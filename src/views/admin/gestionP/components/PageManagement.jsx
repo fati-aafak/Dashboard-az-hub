@@ -219,7 +219,7 @@ const PagePort = () => {
           )}
         </div>
         <div className="mt-8">
-          <button type="submit" className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
+          <button type="submit" className="px-4 py-2 font-bold text-white bg-[#662483] rounded hover:bg-blue-700">
             Save Changes
           </button>
         </div>

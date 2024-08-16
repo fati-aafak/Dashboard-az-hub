@@ -33,7 +33,7 @@ const UserList = () => {
         <div className="text-lg font-bold text-navy-700 dark:text-white">
           Utilisateurs Connectés
         </div>
-        <button className="linear rounded-[20px] bg-lightPrimary px-4 py-2 text-base font-medium text-brand-500 transition duration-200 hover:bg-gray-100 active:bg-gray-200 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 dark:active:bg-white/20">
+        <button className="linear rounded-[20px] bg-lightPrimary px-4 py-2 text-base font-medium text-[#662483] transition duration-200 hover:bg-gray-100 active:bg-gray-200 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 dark:active:bg-white/20">
           See all
         </button>
       </div>
@@ -101,7 +101,7 @@ const UserList = () => {
             placeholder="Rôle"
             className="border rounded p-2"
           />
-          <button onClick={handleAddUser} className="bg-blue-500 text-white rounded p-2">Ajouter</button>
+          <button onClick={handleAddUser} className="bg-[#662483] text-white rounded p-2">Ajouter</button>
         </div>
       </div>
     </Card>

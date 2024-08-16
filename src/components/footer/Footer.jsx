@@ -3,7 +3,7 @@ const Footer = () => {
     <div className="flex w-full flex-col items-center justify-between px-1 pb-8 pt-3 lg:px-8 xl:flex-row">
       <h5 className="mt-32 text-center text-sm font-medium text-gray-600 sm:!mb-0 md:text-lg">
         <p className="mt-32 text-center text-sm text-gray-600 sm:!mb-0 md:text-base">
-          ©{1900 + new Date().getYear()} neom-agency. All Rights Reserved.
+          ©{1900 + new Date().getYear()} AZ HUB-agency. All Rights Reserved.
         </p>
       </h5>
       <div className="mt-[15rem]">
