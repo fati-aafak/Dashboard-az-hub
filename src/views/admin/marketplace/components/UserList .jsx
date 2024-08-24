@@ -1,31 +1,86 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Card from 'components/card';
+import { BASE_URL } from 'constants/config';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
+const api = {
+  getUsers: () => axios.get(`${BASE_URL}/admin`),
+  addUser: (user) => axios.post(`${BASE_URL}/admin`, user),
+  deleteUser: (id) => axios.delete(`${BASE_URL}/admin/${id}`),
+};
 
 const UserList = () => {
-  const [users, setUsers] = useState([
-    { name: "John Doe", email: "john@example.com", status: "Online", role: "Admin" },
-    { name: "Jane Smith", email: "jane@example.com", status: "Offline", role: "User" },
-    { name: "Sam Johnson", email: "sam@example.com", status: "Online", role: "Moderator" },
-    { name: "Chris Lee", email: "chris@example.com", status: "Online", role: "User" },
-    { name: "Alex Brown", email: "alex@example.com", status: "Offline", role: "Admin" },
-  ]);
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+  const [newUser, setNewUser] = useState({ fullname: '', email: '', password: '', role: 'Admin' });
 
-  const [newUser, setNewUser] = useState({ name: '', email: '', status: 'Offline', role: 'User' });
+  const fetchUsers = useCallback(async () => {
+    try {
+      setLoading(true);
+      const response = await api.getUsers();
+      setUsers(response.data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+      setError('Une erreur est survenue lors du chargement des admins.');
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchUsers();
+  }, [fetchUsers]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewUser({ ...newUser, [name]: value });
   };
 
-  const handleAddUser = () => {
-    setUsers([...users, newUser]);
-    setNewUser({ name: '', email: '', status: 'Offline', role: 'User' });
+  const handleAddUser = async () => {
+    try {
+      setLoading(true);
+      const response = await api.addUser(newUser);
+      console.log('API response:', response.data);
+
+      if (response.data && response.data.admin) {
+        setUsers(prevUsers => [...prevUsers, response.data.admin]);
+        setNewUser({ fullname: '', email: '', password: '', role: 'Admin' });
+      } else {
+        console.error('Unexpected API response structure:', response.data);
+        setError('Unexpected response from server when adding user.');
+      }
+
+    } catch (error) {
+      console.error('Error adding user:', error);
+      setError(`Une erreur est survenue lors de l'ajout de l'utilisateur.`);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleDeleteUser = (index) => {
-    const updatedUsers = users.filter((_, i) => i !== index);
-    setUsers(updatedUsers);
+  const handleDeleteUser = async (id) => {
+    try {
+      setLoading(true);
+      await api.deleteUser(id);
+      setUsers(prevUsers => prevUsers.filter(user => user._id !== id));
+    } catch (error) {
+      console.error('Error deleting user:', error);
+      setError(`Une erreur est survenue lors de la suppression de l'utilisateur.`);
+    } finally {
+      setLoading(false);
+    }
   };
+
+  if (loading) {
+    return <div>Chargement...</div>;
+  }
+
+  if (error) {
+    return <div className="text-red-500">{error}</div>;
+  }
 
   return (
     <Card extra={"mt-3 !z-5 overflow-hidden w-[70rem]"}>
@@ -38,26 +93,24 @@ const UserList = () => {
         </button>
       </div>
 
-      <div className="w-full  overflow-x-scroll px-4 md:overflow-x-hidden">
+      <div className="w-full overflow-x-scroll px-4 md:overflow-x-hidden">
         <table className="w-full min-w-[500px] overflow-x-scroll">
           <thead>
             <tr>
               <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">Nom</th>
               <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">Email</th>
-              <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">Statut</th>
               <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">Rôle</th>
               <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">Actions</th>
             </tr>
           </thead>
           <tbody>
-            {users.map((user, index) => (
-              <tr key={index}>
-                <td className="py-3 text-sm">{user.name}</td>
+            {users.map((user) => (
+              <tr key={user._id}>
+                <td className="py-3 text-sm">{user.fullname}</td>
                 <td className="py-3 text-sm">{user.email}</td>
-                <td className="py-3 text-sm">{user.status}</td>
                 <td className="py-3 text-sm">{user.role}</td>
                 <td className="py-3 text-sm">
-                  <button className="text-red-500" onClick={() => handleDeleteUser(index)}>Delete</button>
+                  <button className="text-red-500" onClick={() => handleDeleteUser(user._id)}>Delete</button>
                 </td>
               </tr>
             ))}
@@ -70,8 +123,8 @@ const UserList = () => {
         <div className="flex flex-col space-y-2">
           <input
             type="text"
-            name="name"
-            value={newUser.name}
+            name="fullname"
+            value={newUser.fullname}
             onChange={handleChange}
             placeholder="Nom"
             className="border rounded p-2"
@@ -84,15 +137,14 @@ const UserList = () => {
             placeholder="Email"
             className="border rounded p-2"
           />
-          <select
-            name="status"
-            value={newUser.status}
+          <input
+            type="password"
+            name="password"
+            value={newUser.password}
             onChange={handleChange}
+            placeholder="Password"
             className="border rounded p-2"
-          >
-            <option value="Online">Online</option>
-            <option value="Offline">Offline</option>
-          </select>
+          />
           <input
             type="text"
             name="role"
