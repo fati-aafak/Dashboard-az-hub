@@ -15,10 +15,10 @@ import { AiOutlineFundProjectionScreen } from "react-icons/ai";
 
 import {
   MdHome,
-  MdEvent, 
+  MdEvent,
   MdBarChart,
   MdPerson,
-  MdOutlineEventNote, 
+  MdOutlineEventNote,
   MdLock,
 } from "react-icons/md";
 
@@ -34,30 +34,30 @@ const routes = [
     name: "Utilisateurs",
     layout: "/admin",
     path: "Utilisateurs",
-    icon: <FaUsers className="h-6 w-6 text-[#662483]"  />,
+    icon: <FaUsers className="h-6 w-6 text-[#662483]" />,
     component: <NFTMarketplace />,
     secondary: true,
   },
   {
-    name: "évènement",
+    name: "Actualités",
     layout: "/admin",
     path: "Event",
-    icon: <MdEvent  className="h-6 w-6 text-[#662483]" />,
-    component: <Event/>,
+    icon: <MdEvent className="h-6 w-6 text-[#662483]" />,
+    component: <Event />,
   },
   {
-    name: "portfolio",
+    name: "Portfolio",
     layout: "/admin",
     path: "portfolioList",
     icon: <AiOutlineFundProjectionScreen className="h-6 w-6 text-[#662483]" />,
-    component: <Portfolio/>,
+    component: <Portfolio />,
   },
   {
     name: "Gestion portfolio",
     layout: "/admin",
     icon: <MdBarChart className="h-6 w-6 text-[#662483]" />,
     path: "RTLDefault",
-    component: <RTLDefault/>,
+    component: <RTLDefault />,
   },
   {
     name: "Gestion D'évènement",
@@ -81,6 +81,6 @@ const routes = [
     icon: <MdPerson className="h-6 w-6 text-[#662483]" />,
     component: <Register />,
   },
- 
+
 ];
 export default routes;
