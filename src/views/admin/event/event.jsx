@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Card from 'components/card';
 import axios from 'axios';
+import { BASE_URL } from 'constants/config';
 
-const API_BASE_URL = 'https://driving-laraine-az-hub-0af57591.koyeb.app/api'; // Assurez-vous que c'est la bonne URL
+const API_BASE_URL = BASE_URL;
 
 const EventList = () => {
   const [actualites, setActualites] = useState([]);
@@ -29,13 +30,13 @@ const EventList = () => {
   };
 
   const handleAddEvent = () => {
-    navigate('/admin/data-tables'); 
+    navigate('/admin/data-tables');
   };
 
   const handleDeleteActualite = async (id) => {
     try {
       await axios.delete(`${API_BASE_URL}/actualite/${id}`);
-      fetchActualites(); 
+      fetchActualites();
     } catch (error) {
       console.error('Erreur lors de la suppression de l\'actualité:', error);
       setError('Une erreur est survenue lors de la suppression de l\'actualité.');
@@ -51,7 +52,7 @@ const EventList = () => {
         <div className="text-lg font-bold text-navy-700 dark:text-white">
           Liste des Actualités et Événements
         </div>
-        <button 
+        <button
           onClick={handleAddEvent}
           className="linear rounded-[20px] bg-lightPrimary px-4 py-2 text-base font-medium text-brand-500 transition duration-200 hover:bg-gray-100 active:bg-gray-200 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 dark:active:bg-white/20"
         >

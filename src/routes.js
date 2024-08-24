@@ -60,7 +60,7 @@ const routes = [
     component: <RTLDefault />,
   },
   {
-    name: "Gestion D'évènement",
+    name: "Gestion D'actualités",
     layout: "/admin",
     path: "data-tables",
     icon: <MdOutlineEventNote className="h-6 w-6 text-[#662483]" />,
