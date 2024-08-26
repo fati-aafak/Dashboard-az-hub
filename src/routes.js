@@ -10,6 +10,7 @@ import SignIn from "views/auth/SignIn";
 import Register from "views/auth/SignUp"
 import GestionOffres from "views/admin/gestionOffres/index";
 import Offres from "views/admin/offres/index";
+import Postulations from "views/admin/postulation/index";
 
 import { FaUsers } from "react-icons/fa";
 import { AiOutlineFundProjectionScreen } from "react-icons/ai";
@@ -60,6 +61,13 @@ const routes = [
     path: "offreList",
     icon: <AiOutlineFundProjectionScreen className="h-6 w-6 text-[#662483]" />,
     component: <Offres />,
+  },
+  {
+    name: "Postulations",
+    layout: "/admin",
+    path: "postulationList",
+    icon: <AiOutlineFundProjectionScreen className="h-6 w-6 text-[#662483]" />,
+    component: <Postulations />,
   },
   {
     name: "Gestion portfolio",
