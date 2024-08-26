@@ -8,6 +8,9 @@ import Portfolio from "views/admin/portfolio";
 import Event from "views/admin/event/event";
 import SignIn from "views/auth/SignIn";
 import Register from "views/auth/SignUp"
+import GestionOffres from "views/admin/gestionOffres/index";
+import Offres from "views/admin/offres/index";
+import Postulations from "views/admin/postulation/index";
 
 import { FaUsers } from "react-icons/fa";
 import { AiOutlineFundProjectionScreen } from "react-icons/ai";
@@ -15,10 +18,10 @@ import { AiOutlineFundProjectionScreen } from "react-icons/ai";
 
 import {
   MdHome,
-  MdEvent, 
+  MdEvent,
   MdBarChart,
   MdPerson,
-  MdOutlineEventNote, 
+  MdOutlineEventNote,
   MdLock,
 } from "react-icons/md";
 
@@ -34,39 +37,59 @@ const routes = [
     name: "Utilisateurs",
     layout: "/admin",
     path: "Utilisateurs",
-    icon: <FaUsers className="h-6 w-6 text-[#662483]"  />,
+    icon: <FaUsers className="h-6 w-6 text-[#662483]" />,
     component: <NFTMarketplace />,
     secondary: true,
   },
   {
-    name: "évènement",
+    name: "Actualités",
     layout: "/admin",
     path: "Event",
-    icon: <MdEvent  className="h-6 w-6 text-[#662483]" />,
-    component: <Event/>,
+    icon: <MdEvent className="h-6 w-6 text-[#662483]" />,
+    component: <Event />,
   },
   {
-    name: "portfolio",
+    name: "Portfolio",
     layout: "/admin",
     path: "portfolioList",
     icon: <AiOutlineFundProjectionScreen className="h-6 w-6 text-[#662483]" />,
-    component: <Portfolio/>,
+    component: <Portfolio />,
+  },
+  {
+    name: "Offres",
+    layout: "/admin",
+    path: "offreList",
+    icon: <AiOutlineFundProjectionScreen className="h-6 w-6 text-[#662483]" />,
+    component: <Offres />,
+  },
+  {
+    name: "Postulations",
+    layout: "/admin",
+    path: "postulationList",
+    icon: <AiOutlineFundProjectionScreen className="h-6 w-6 text-[#662483]" />,
+    component: <Postulations />,
   },
   {
     name: "Gestion portfolio",
     layout: "/admin",
     icon: <MdBarChart className="h-6 w-6 text-[#662483]" />,
     path: "RTLDefault",
-    component: <RTLDefault/>,
+    component: <RTLDefault />,
   },
   {
-    name: "Gestion D'évènement",
+    name: "Gestion D'actualités",
     layout: "/admin",
     path: "data-tables",
     icon: <MdOutlineEventNote className="h-6 w-6 text-[#662483]" />,
     component: <DataTables />,
   },
-
+  {
+    name: "Gestion D'offres",
+    layout: "/admin",
+    path: "gestion-offres",
+    icon: <MdOutlineEventNote className="h-6 w-6 text-[#662483]" />,
+    component: <GestionOffres />,
+  },
   {
     name: "Se déconnecter",
     layout: "/auth",
@@ -81,6 +104,6 @@ const routes = [
     icon: <MdPerson className="h-6 w-6 text-[#662483]" />,
     component: <Register />,
   },
- 
+
 ];
 export default routes;

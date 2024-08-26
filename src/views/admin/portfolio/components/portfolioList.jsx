@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { BASE_URL } from 'constants/config';
 
-const API_BASE_URL = 'https://driving-laraine-az-hub-0af57591.koyeb.app/api'; // Assurez-vous que c'est la bonne URL
+const API_BASE_URL = BASE_URL;
 
 const PortfolioList = () => {
   const [portfolios, setPortfolios] = useState([]);
@@ -18,7 +19,7 @@ const PortfolioList = () => {
     try {
       setLoading(true);
       const response = await axios.get(`${API_BASE_URL}/portfolio`);
-      console.log('Portfolios fetched:', response.data); 
+      console.log('Portfolios fetched:', response.data);
       setPortfolios(response.data);
       setLoading(false);
     } catch (error) {
@@ -29,13 +30,13 @@ const PortfolioList = () => {
   };
 
   const handleAddPortfolio = () => {
-    navigate('/admin/RTLDefault'); 
+    navigate('/admin/RTLDefault');
   };
 
   const handleDeletePortfolio = async (id) => {
     try {
       await axios.delete(`${API_BASE_URL}/portfolio/${id}`);
-      fetchPortfolios(); 
+      fetchPortfolios();
     } catch (error) {
       console.error('Erreur lors de la suppression du portfolio:', error);
       setError('Une erreur est survenue lors de la suppression du portfolio.');
@@ -51,7 +52,7 @@ const PortfolioList = () => {
         <div className="text-lg font-bold text-navy-700 dark:text-white">
           Liste des Portfolios
         </div>
-        <button 
+        <button
           onClick={handleAddPortfolio}
           className="linear rounded-[20px] bg-lightPrimary px-4 py-2 text-base font-medium text-brand-500 transition duration-200 hover:bg-gray-100 active:bg-gray-200 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 dark:active:bg-white/20"
         >
