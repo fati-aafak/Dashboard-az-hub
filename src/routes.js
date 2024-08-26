@@ -8,6 +8,8 @@ import Portfolio from "views/admin/portfolio";
 import Event from "views/admin/event/event";
 import SignIn from "views/auth/SignIn";
 import Register from "views/auth/SignUp"
+import GestionOffres from "views/admin/gestionOffres/index";
+import Offres from "views/admin/offres/index";
 
 import { FaUsers } from "react-icons/fa";
 import { AiOutlineFundProjectionScreen } from "react-icons/ai";
@@ -53,6 +55,13 @@ const routes = [
     component: <Portfolio />,
   },
   {
+    name: "Offres",
+    layout: "/admin",
+    path: "offreList",
+    icon: <AiOutlineFundProjectionScreen className="h-6 w-6 text-[#662483]" />,
+    component: <Offres />,
+  },
+  {
     name: "Gestion portfolio",
     layout: "/admin",
     icon: <MdBarChart className="h-6 w-6 text-[#662483]" />,
@@ -66,7 +75,13 @@ const routes = [
     icon: <MdOutlineEventNote className="h-6 w-6 text-[#662483]" />,
     component: <DataTables />,
   },
-
+  {
+    name: "Gestion D'offres",
+    layout: "/admin",
+    path: "gestion-offres",
+    icon: <MdOutlineEventNote className="h-6 w-6 text-[#662483]" />,
+    component: <GestionOffres />,
+  },
   {
     name: "Se déconnecter",
     layout: "/auth",

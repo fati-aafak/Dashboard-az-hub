@@ -6,6 +6,7 @@ import * as yup from 'yup';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import axios from 'axios';
+import { BASE_URL } from 'constants/config';
 
 // Ajout du composant Dropdown
 function useOutsideAlerter(ref, setX) {
@@ -34,11 +35,10 @@ const Dropdown = (props) => {
         {button}
       </div>
       <div
-        className={`${classNames} absolute z-10 ${
-          animation
-            ? animation
-            : "origin-top-right transition-all duration-300 ease-in-out"
-        } ${openWrapper ? "scale-100" : "scale-0"}`}
+        className={`${classNames} absolute z-10 ${animation
+          ? animation
+          : "origin-top-right transition-all duration-300 ease-in-out"
+          } ${openWrapper ? "scale-100" : "scale-0"}`}
       >
         {children}
       </div>
@@ -53,8 +53,7 @@ const schema = yup.object().shape({
   category: yup.string().required('Category is required'),
 });
 
-const API_BASE_URL = 'https://driving-laraine-az-hub-0af57591.koyeb.app/api'; // Adjust this to your backend URL
-
+const API_BASE_URL = BASE_URL;
 const createActualite = async (formData) => {
   try {
     const response = await axios.post(`${API_BASE_URL}/actualite`, formData, {
@@ -90,7 +89,7 @@ const PageMag = () => {
       formData.append('category', selectedCategory);
       formData.append('image', data.image);
       formData.append('eventDate', data.eventDate.toISOString());
-      
+
       const response = await createActualite(formData);
       console.log('Actualite created:', response);
       setSubmitStatus({ type: 'success', message: 'Actualité créée avec succès!' });
@@ -127,7 +126,7 @@ const PageMag = () => {
     <Card extra="w-[70rem] p-4">
       <div className="relative flex items-center justify-between">
         <div className="text-xl font-bold text-navy-700 dark:text-white">
-          Page Management
+          Acutalité Management
         </div>
       </div>
       {submitStatus && (
