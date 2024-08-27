@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import InputField from 'components/fields/InputField';
+import { BASE_URL } from 'constants/config';
 
-const API_URL = 'https://driving-laraine-az-hub-0af57591.koyeb.app/api/';
+const API_URL = BASE_URL;
 
 const SignIn = () => {
   let initialFormData = {
@@ -41,7 +42,7 @@ const SignIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${API_URL}loginuser`, formData);
+      const response = await axios.post(`${API_URL}/auth/login`, formData);
       localStorage.setItem('token', response.data.token);
       navigate('/admin');
     } catch (err) {
@@ -58,9 +59,9 @@ const SignIn = () => {
       <div className="mt-[10vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
         <h4 className="mb-2.5 text-4xl font-bold text-navy-700 dark:text-white">Se connecter</h4>
         <p className="ml-1 text-base text-gray-600 mb-9">Entrez votre email et votre mot de passe pour vous connecter !</p>
-        
+
         {message && <p className="mb-4 text-green-500">{message}</p>}
-        
+
         <form onSubmit={handleSubmit}>
           <InputField
             variant="auth"

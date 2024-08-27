@@ -1,5 +1,4 @@
 import React from "react";
-
 import MainDashboard from "views/admin/default/components";
 import NFTMarketplace from "views/admin/marketplace";
 import DataTables from "views/admin/tables";
@@ -11,19 +10,18 @@ import Register from "views/auth/SignUp"
 import GestionOffres from "views/admin/gestionOffres/index";
 import Offres from "views/admin/offres/index";
 import Postulations from "views/admin/postulation/index";
-
-import { FaUsers } from "react-icons/fa";
-import { AiOutlineFundProjectionScreen } from "react-icons/ai";
-
-
+import { FaUsers, FaNewspaper, FaBriefcase } from "react-icons/fa";
+import { AiOutlineFundProjectionScreen, AiOutlineFileSearch } from "react-icons/ai";
 import {
   MdHome,
   MdEvent,
-  MdBarChart,
+  MdSettings,
   MdPerson,
   MdOutlineEventNote,
   MdLock,
+  MdLocalOffer,
 } from "react-icons/md";
+import { BsFillFileEarmarkPostFill } from "react-icons/bs";
 
 const routes = [
   {
@@ -45,7 +43,7 @@ const routes = [
     name: "Actualités",
     layout: "/admin",
     path: "Event",
-    icon: <MdEvent className="h-6 w-6 text-[#662483]" />,
+    icon: <FaNewspaper className="h-6 w-6 text-[#662483]" />,
     component: <Event />,
   },
   {
@@ -59,20 +57,20 @@ const routes = [
     name: "Offres",
     layout: "/admin",
     path: "offreList",
-    icon: <AiOutlineFundProjectionScreen className="h-6 w-6 text-[#662483]" />,
+    icon: <MdLocalOffer className="h-6 w-6 text-[#662483]" />,
     component: <Offres />,
   },
   {
     name: "Postulations",
     layout: "/admin",
     path: "postulationList",
-    icon: <AiOutlineFundProjectionScreen className="h-6 w-6 text-[#662483]" />,
+    icon: <BsFillFileEarmarkPostFill className="h-6 w-6 text-[#662483]" />,
     component: <Postulations />,
   },
   {
     name: "Gestion portfolio",
     layout: "/admin",
-    icon: <MdBarChart className="h-6 w-6 text-[#662483]" />,
+    icon: <MdSettings className="h-6 w-6 text-[#662483]" />,
     path: "RTLDefault",
     component: <RTLDefault />,
   },
@@ -87,7 +85,7 @@ const routes = [
     name: "Gestion D'offres",
     layout: "/admin",
     path: "gestion-offres",
-    icon: <MdOutlineEventNote className="h-6 w-6 text-[#662483]" />,
+    icon: <FaBriefcase className="h-6 w-6 text-[#662483]" />,
     component: <GestionOffres />,
   },
   {
@@ -104,6 +102,6 @@ const routes = [
     icon: <MdPerson className="h-6 w-6 text-[#662483]" />,
     component: <Register />,
   },
-
 ];
+
 export default routes;
