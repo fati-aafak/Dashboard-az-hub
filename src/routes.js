@@ -23,6 +23,7 @@ import {
   MdPerson,
   MdOutlineEventNote,
   MdLock,
+  MdLocalOffer,
 } from "react-icons/md";
 
 const routes = [
@@ -59,7 +60,7 @@ const routes = [
     name: "Offres",
     layout: "/admin",
     path: "offreList",
-    icon: <AiOutlineFundProjectionScreen className="h-6 w-6 text-[#662483]" />,
+    icon: <MdLocalOffer className="h-6 w-6 text-[#662483]" />,
     component: <Offres />,
   },
   {
