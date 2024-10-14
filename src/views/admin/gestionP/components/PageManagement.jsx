@@ -171,7 +171,7 @@ const PagePort = () => {
           <input
             type="text"
             id="title"
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200"
+            className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200"
             {...register("title")}
           />
           {errors.title && (
@@ -188,7 +188,7 @@ const PagePort = () => {
           <input
             type="text"
             id="subtitle"
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200"
+            className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200"
             {...register("subtitle")}
           />
           {errors.subtitle && (
@@ -207,7 +207,7 @@ const PagePort = () => {
           <textarea
             id="description"
             rows={4}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200"
+            className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200"
             {...register("description")}
           />
           {errors.description && (
@@ -227,7 +227,7 @@ const PagePort = () => {
             button={
               <button
                 type="button"
-                className="w-full rounded-md border px-4 py-2 text-left"
+                className="w-full px-4 py-2 text-left border rounded-md"
               >
                 {selectedCategory || "Select a category"}
               </button>
@@ -269,20 +269,20 @@ const PagePort = () => {
             id="image"
             accept="image/*"
             onChange={handleImageChange}
-            className="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:rounded-full file:border-0 file:bg-gray-50 file:py-2 file:px-4 file:text-sm file:font-semibold file:text-gray-700 hover:file:bg-gray-100"
+            className="block w-full mt-1 text-sm text-gray-500 file:mr-4 file:rounded-full file:border-0 file:bg-gray-50 file:py-2 file:px-4 file:text-sm file:font-semibold file:text-gray-700 hover:file:bg-gray-100"
           />
           {imagePreview && (
             <img
               src={imagePreview}
               alt="Preview"
-              className="mt-2 w-full rounded-md shadow-sm"
+              className="w-full mt-2 rounded-md shadow-sm"
             />
           )}
         </div>
         <div className="mt-8">
           <button
             type="submit"
-            className="rounded bg-[#662483] px-4 py-2 font-bold text-white hover:bg-blue-700"
+            className="rounded bg-[#f06739] px-4 py-2 font-bold text-white hover:bg-blue-700"
           >
             Save Changes
           </button>

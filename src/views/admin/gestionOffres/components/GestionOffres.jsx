@@ -195,7 +195,7 @@ const PageMag = () => {
           <input
             type="text"
             id="title"
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200"
+            className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200"
             {...register("title")}
           />
           {errors.title && (
@@ -212,7 +212,7 @@ const PageMag = () => {
           <input
             type="text"
             id="location"
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200"
+            className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200"
             {...register("location")}
           />
           {errors.location && (
@@ -231,7 +231,7 @@ const PageMag = () => {
           <input
             type="text"
             id="education"
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200"
+            className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200"
             {...register("education")}
           />
           {errors.education && (
@@ -250,7 +250,7 @@ const PageMag = () => {
           <textarea
             id="description"
             rows={4}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200"
+            className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200"
             {...register("description")}
           />
           {errors.description && (
@@ -267,17 +267,17 @@ const PageMag = () => {
             Missions
           </label>
           {missionFields.map((field, index) => (
-            <div key={field.id} className="mt-2 flex items-center">
+            <div key={field.id} className="flex items-center mt-2">
               <input
                 type="text"
                 {...register(`missions.${index}`)}
-                className="mr-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200"
+                className="block w-full mr-2 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200"
                 placeholder="Enter a mission"
               />
               <button
                 type="button"
                 onClick={() => removeMission(index)}
-                className="rounded bg-red-500 px-2 py-1 text-white hover:bg-red-600"
+                className="px-2 py-1 text-white bg-red-500 rounded hover:bg-red-600"
               >
                 Remove
               </button>
@@ -286,7 +286,7 @@ const PageMag = () => {
           <button
             type="button"
             onClick={() => appendMission("")}
-            className="mt-2 rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600"
+            className="px-4 py-2 mt-2 text-white bg-green-500 rounded hover:bg-green-600"
           >
             Ajouter Mission
           </button>
@@ -305,17 +305,17 @@ const PageMag = () => {
             Qualifications
           </label>
           {qualificationFields.map((field, index) => (
-            <div key={field.id} className="mt-2 flex items-center">
+            <div key={field.id} className="flex items-center mt-2">
               <input
                 type="text"
                 {...register(`Qualifications.${index}`)}
-                className="mr-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200"
+                className="block w-full mr-2 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200"
                 placeholder="Enter a qualification"
               />
               <button
                 type="button"
                 onClick={() => removeQualification(index)}
-                className="rounded bg-red-500 px-2 py-1 text-white hover:bg-red-600"
+                className="px-2 py-1 text-white bg-red-500 rounded hover:bg-red-600"
               >
                 Remove
               </button>
@@ -324,7 +324,7 @@ const PageMag = () => {
           <button
             type="button"
             onClick={() => appendQualification("")}
-            className="mt-2 rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600"
+            className="px-4 py-2 mt-2 text-white bg-green-500 rounded hover:bg-green-600"
           >
             Ajouter Qualification
           </button>
@@ -345,7 +345,7 @@ const PageMag = () => {
             button={
               <button
                 type="button"
-                className="w-full rounded-md border px-4 py-2 text-left"
+                className="w-full px-4 py-2 text-left border rounded-md"
               >
                 {selectedDepartement
                   ? departements.find(
@@ -390,7 +390,7 @@ const PageMag = () => {
             button={
               <button
                 type="button"
-                className="w-full rounded-md border px-4 py-2 text-left"
+                className="w-full px-4 py-2 text-left border rounded-md"
               >
                 {selectedContract
                   ? contrats.find((cat) => cat.value === selectedContract).label
@@ -433,7 +433,7 @@ const PageMag = () => {
             button={
               <button
                 type="button"
-                className="w-full rounded-md border px-4 py-2 text-left"
+                className="w-full px-4 py-2 text-left border rounded-md"
               >
                 {selectedType
                   ? types.find((cat) => cat.value === selectedType).label
@@ -466,7 +466,7 @@ const PageMag = () => {
         <div className="mt-8">
           <button
             type="submit"
-            className="rounded bg-[#662483] px-4 py-2 font-bold text-white hover:bg-blue-700"
+            className="rounded bg-[#f06739] px-4 py-2 font-bold text-white hover:bg-blue-700"
           >
             Save Changes
           </button>
