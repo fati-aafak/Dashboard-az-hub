@@ -96,35 +96,35 @@ const OfferList = () => {
 
   return (
     <div className="card w-[70rem] p-4">
-      <div className="flex items-center justify-between rounded-t-3xl p-3">
+      <div className="flex items-center justify-between p-3 rounded-t-3xl">
         <div className="text-lg font-bold text-navy-700 dark:text-white">
           Liste des Offres (Total: {offers.length})
         </div>
         <button
           onClick={handleAddOffer}
-          className="linear rounded-[20px] bg-lightPrimary px-4 py-2 text-base font-medium text-brand-500 transition duration-200 hover:bg-gray-100 active:bg-gray-200 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 dark:active:bg-white/20"
+          className="linear rounded-[20px] bg-lightPrimary px-4 py-2 text-base font-medium text-[#258585] transition duration-200 hover:bg-gray-100 active:bg-gray-200 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 dark:active:bg-white/20"
         >
           Ajouter une offre
         </button>
       </div>
-      <div className="w-full overflow-x-scroll px-4 md:overflow-x-hidden">
+      <div className="w-full px-4 overflow-x-scroll md:overflow-x-hidden">
         {offers.length > 0 ? (
           <table className="w-full min-w-[500px] overflow-x-scroll">
             <thead>
               <tr>
-                <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">
+                <th className="py-3 tracking-wide text-gray-600 uppercase text-start sm:text-xs lg:text-xs">
                   Titre
                 </th>
-                <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">
+                <th className="py-3 tracking-wide text-gray-600 uppercase text-start sm:text-xs lg:text-xs">
                   Location
                 </th>
-                <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">
+                <th className="py-3 tracking-wide text-gray-600 uppercase text-start sm:text-xs lg:text-xs">
                   Département
                 </th>
-                <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">
+                <th className="py-3 tracking-wide text-gray-600 uppercase text-start sm:text-xs lg:text-xs">
                   Type de Contrat
                 </th>
-                <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">
+                <th className="py-3 tracking-wide text-gray-600 uppercase text-start sm:text-xs lg:text-xs">
                   Actions
                 </th>
               </tr>
@@ -153,11 +153,11 @@ const OfferList = () => {
         )}
       </div>
       {totalPages > 1 && (
-        <div className="mt-4 flex justify-center">
+        <div className="flex justify-center mt-4">
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
-            className="mr-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            className="px-4 py-2 mr-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
           >
             Précédent
           </button>
@@ -167,7 +167,7 @@ const OfferList = () => {
           <button
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
-            className="ml-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            className="px-4 py-2 ml-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
           >
             Suivant
           </button>

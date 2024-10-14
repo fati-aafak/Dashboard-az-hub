@@ -51,35 +51,35 @@ const EventList = () => {
 
   return (
     <Card extra="w-[70rem] p-4">
-      <div className="flex items-center justify-between rounded-t-3xl p-3">
+      <div className="flex items-center justify-between p-3 rounded-t-3xl">
         <div className="text-lg font-bold text-navy-700 dark:text-white">
           Liste des Actualités et Événements
         </div>
         <button
           onClick={handleAddEvent}
-          className="linear rounded-[20px] bg-lightPrimary px-4 py-2 text-base font-medium text-brand-500 transition duration-200 hover:bg-gray-100 active:bg-gray-200 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 dark:active:bg-white/20"
+          className="linear rounded-[20px] bg-lightPrimary px-4 py-2 text-base font-medium text-[#258585] transition duration-200 hover:bg-gray-100 active:bg-gray-200 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 dark:active:bg-white/20"
         >
           Ajouter une actualité/événement
         </button>
       </div>
 
-      <div className="w-full overflow-x-scroll px-4 md:overflow-x-hidden">
+      <div className="w-full px-4 overflow-x-scroll md:overflow-x-hidden">
         <table className="w-full min-w-[500px] overflow-x-scroll">
           <thead>
             <tr>
-              <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">
+              <th className="py-3 tracking-wide text-gray-600 uppercase text-start sm:text-xs lg:text-xs">
                 Titre
               </th>
-              <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">
+              <th className="py-3 tracking-wide text-gray-600 uppercase text-start sm:text-xs lg:text-xs">
                 Description
               </th>
-              <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">
+              <th className="py-3 tracking-wide text-gray-600 uppercase text-start sm:text-xs lg:text-xs">
                 Date
               </th>
-              <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">
+              <th className="py-3 tracking-wide text-gray-600 uppercase text-start sm:text-xs lg:text-xs">
                 Catégorie
               </th>
-              <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">
+              <th className="py-3 tracking-wide text-gray-600 uppercase text-start sm:text-xs lg:text-xs">
                 Actions
               </th>
             </tr>

@@ -91,29 +91,29 @@ const UserList = () => {
 
   return (
     <Card extra={"mt-3 !z-5 overflow-hidden w-[70rem]"}>
-      <div className="flex items-center justify-between rounded-t-3xl p-3">
+      <div className="flex items-center justify-between p-3 rounded-t-3xl">
         <div className="text-lg font-bold text-navy-700 dark:text-white">
           Utilisateurs Connectés
         </div>
-        <button className="linear rounded-[20px] bg-lightPrimary px-4 py-2 text-base font-medium text-[#662483] transition duration-200 hover:bg-gray-100 active:bg-gray-200 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 dark:active:bg-white/20">
-          See all
+        <button className="linear rounded-[20px] bg-lightPrimary px-4 py-2 text-base font-medium text-[#f06739] transition duration-200 hover:bg-gray-100 active:bg-gray-200 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 dark:active:bg-white/20">
+          Voir plus
         </button>
       </div>
 
-      <div className="w-full overflow-x-scroll px-4 md:overflow-x-hidden">
+      <div className="w-full px-4 overflow-x-scroll md:overflow-x-hidden">
         <table className="w-full min-w-[500px] overflow-x-scroll">
           <thead>
             <tr>
-              <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">
+              <th className="py-3 tracking-wide text-gray-600 uppercase text-start sm:text-xs lg:text-xs">
                 Nom
               </th>
-              <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">
+              <th className="py-3 tracking-wide text-gray-600 uppercase text-start sm:text-xs lg:text-xs">
                 Email
               </th>
-              <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">
+              <th className="py-3 tracking-wide text-gray-600 uppercase text-start sm:text-xs lg:text-xs">
                 Rôle
               </th>
-              <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">
+              <th className="py-3 tracking-wide text-gray-600 uppercase text-start sm:text-xs lg:text-xs">
                 Actions
               </th>
             </tr>
@@ -149,7 +149,7 @@ const UserList = () => {
             value={newUser.fullname}
             onChange={handleChange}
             placeholder="Nom"
-            className="rounded border p-2"
+            className="p-2 border rounded"
           />
           <input
             type="email"
@@ -157,7 +157,7 @@ const UserList = () => {
             value={newUser.email}
             onChange={handleChange}
             placeholder="Email"
-            className="rounded border p-2"
+            className="p-2 border rounded"
           />
           <input
             type="password"
@@ -165,7 +165,7 @@ const UserList = () => {
             value={newUser.password}
             onChange={handleChange}
             placeholder="Password"
-            className="rounded border p-2"
+            className="p-2 border rounded"
           />
           <input
             type="text"
@@ -173,11 +173,11 @@ const UserList = () => {
             value={newUser.role}
             onChange={handleChange}
             placeholder="Rôle"
-            className="rounded border p-2"
+            className="p-2 border rounded"
           />
           <button
             onClick={handleAddUser}
-            className="rounded bg-[#662483] p-2 text-white"
+            className="rounded bg-[#f06739] p-2 text-white"
           >
             Ajouter
           </button>
