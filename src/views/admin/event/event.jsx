@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Card from 'components/card';
-import axios from 'axios';
-import { BASE_URL } from 'constants/config';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Card from "components/card";
+import axios from "axios";
+import { BASE_URL } from "constants/config";
+import httpClient from "utils/httpClient";
 
 const API_BASE_URL = BASE_URL;
 
@@ -19,27 +20,29 @@ const EventList = () => {
   const fetchActualites = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`${API_BASE_URL}/actualite`);
+      const response = await httpClient.get(`/actualite`);
       setActualites(response.data);
       setLoading(false);
     } catch (error) {
-      console.error('Erreur lors de la récupération des actualités:', error);
-      setError('Une erreur est survenue lors du chargement des actualités.');
+      console.error("Erreur lors de la récupération des actualités:", error);
+      setError("Une erreur est survenue lors du chargement des actualités.");
       setLoading(false);
     }
   };
 
   const handleAddEvent = () => {
-    navigate('/admin/data-tables');
+    navigate("/admin/data-tables");
   };
 
   const handleDeleteActualite = async (id) => {
     try {
-      await axios.delete(`${API_BASE_URL}/actualite/${id}`);
+      await httpClient.delete(`/actualite/${id}`);
       fetchActualites();
     } catch (error) {
-      console.error('Erreur lors de la suppression de l\'actualité:', error);
-      setError('Une erreur est survenue lors de la suppression de l\'actualité.');
+      console.error("Erreur lors de la suppression de l'actualité:", error);
+      setError(
+        "Une erreur est survenue lors de la suppression de l'actualité."
+      );
     }
   };
 
@@ -48,7 +51,7 @@ const EventList = () => {
 
   return (
     <Card extra="w-[70rem] p-4">
-      <div className="flex items-center justify-between p-3 rounded-t-3xl">
+      <div className="flex items-center justify-between rounded-t-3xl p-3">
         <div className="text-lg font-bold text-navy-700 dark:text-white">
           Liste des Actualités et Événements
         </div>
@@ -60,15 +63,25 @@ const EventList = () => {
         </button>
       </div>
 
-      <div className="w-full px-4 overflow-x-scroll md:overflow-x-hidden">
+      <div className="w-full overflow-x-scroll px-4 md:overflow-x-hidden">
         <table className="w-full min-w-[500px] overflow-x-scroll">
           <thead>
             <tr>
-              <th className="py-3 tracking-wide text-gray-600 uppercase text-start sm:text-xs lg:text-xs">Titre</th>
-              <th className="py-3 tracking-wide text-gray-600 uppercase text-start sm:text-xs lg:text-xs">Description</th>
-              <th className="py-3 tracking-wide text-gray-600 uppercase text-start sm:text-xs lg:text-xs">Date</th>
-              <th className="py-3 tracking-wide text-gray-600 uppercase text-start sm:text-xs lg:text-xs">Catégorie</th>
-              <th className="py-3 tracking-wide text-gray-600 uppercase text-start sm:text-xs lg:text-xs">Actions</th>
+              <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">
+                Titre
+              </th>
+              <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">
+                Description
+              </th>
+              <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">
+                Date
+              </th>
+              <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">
+                Catégorie
+              </th>
+              <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -76,10 +89,17 @@ const EventList = () => {
               <tr key={item._id}>
                 <td className="py-3 text-sm">{item.title}</td>
                 <td className="py-3 text-sm">{item.description}</td>
-                <td className="py-3 text-sm">{new Date(item.eventDate).toLocaleDateString()}</td>
+                <td className="py-3 text-sm">
+                  {new Date(item.eventDate).toLocaleDateString()}
+                </td>
                 <td className="py-3 text-sm">{item.category}</td>
                 <td className="py-3 text-sm">
-                  <button className="text-red-500" onClick={() => handleDeleteActualite(item._id)}>Supprimer</button>
+                  <button
+                    className="text-red-500"
+                    onClick={() => handleDeleteActualite(item._id)}
+                  >
+                    Supprimer
+                  </button>
                 </td>
               </tr>
             ))}

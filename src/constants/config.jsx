@@ -1,1 +1,1 @@
-export const BASE_URL = "https://az-hub-backend.onrender.com/api";
+export const BASE_URL = "https://az-hub.net/api";

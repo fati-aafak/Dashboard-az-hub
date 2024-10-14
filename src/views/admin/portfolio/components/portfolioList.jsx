@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { BASE_URL } from 'constants/config';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { BASE_URL } from "constants/config";
+import httpClient from "utils/httpClient";
 
 const API_BASE_URL = BASE_URL;
 
@@ -18,28 +19,28 @@ const PortfolioList = () => {
   const fetchPortfolios = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`${API_BASE_URL}/portfolio`);
-      console.log('Portfolios fetched:', response.data);
+      const response = await httpClient.get(`/portfolio`);
+      console.log("Portfolios fetched:", response.data);
       setPortfolios(response.data);
       setLoading(false);
     } catch (error) {
-      console.error('Erreur lors de la récupération des portfolios:', error);
-      setError('Une erreur est survenue lors du chargement des portfolios.');
+      console.error("Erreur lors de la récupération des portfolios:", error);
+      setError("Une erreur est survenue lors du chargement des portfolios.");
       setLoading(false);
     }
   };
 
   const handleAddPortfolio = () => {
-    navigate('/admin/RTLDefault');
+    navigate("/admin/RTLDefault");
   };
 
   const handleDeletePortfolio = async (id) => {
     try {
-      await axios.delete(`${API_BASE_URL}/portfolio/${id}`);
+      await httpClient.delete(`/portfolio/${id}`);
       fetchPortfolios();
     } catch (error) {
-      console.error('Erreur lors de la suppression du portfolio:', error);
-      setError('Une erreur est survenue lors de la suppression du portfolio.');
+      console.error("Erreur lors de la suppression du portfolio:", error);
+      setError("Une erreur est survenue lors de la suppression du portfolio.");
     }
   };
 
@@ -47,8 +48,10 @@ const PortfolioList = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="card w-[70rem] p-4"> {/* Remplacez 'Card' par 'div' si 'Card' n'est pas défini */}
-      <div className="flex items-center justify-between p-3 rounded-t-3xl">
+    <div className="card w-[70rem] p-4">
+      {" "}
+      {/* Remplacez 'Card' par 'div' si 'Card' n'est pas défini */}
+      <div className="flex items-center justify-between rounded-t-3xl p-3">
         <div className="text-lg font-bold text-navy-700 dark:text-white">
           Liste des Portfolios
         </div>
@@ -59,16 +62,25 @@ const PortfolioList = () => {
           Ajouter un portfolio
         </button>
       </div>
-
-      <div className="w-full px-4 overflow-x-scroll md:overflow-x-hidden">
+      <div className="w-full overflow-x-scroll px-4 md:overflow-x-hidden">
         <table className="w-full min-w-[500px] overflow-x-scroll">
           <thead>
             <tr>
-              <th className="py-3 tracking-wide text-gray-600 uppercase text-start sm:text-xs lg:text-xs">Titre</th>
-              <th className="py-3 tracking-wide text-gray-600 uppercase text-start sm:text-xs lg:text-xs">Sous-titre</th>
-              <th className="py-3 tracking-wide text-gray-600 uppercase text-start sm:text-xs lg:text-xs">Description</th>
-              <th className="py-3 tracking-wide text-gray-600 uppercase text-start sm:text-xs lg:text-xs">Catégorie</th>
-              <th className="py-3 tracking-wide text-gray-600 uppercase text-start sm:text-xs lg:text-xs">Actions</th>
+              <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">
+                Titre
+              </th>
+              <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">
+                Sous-titre
+              </th>
+              <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">
+                Description
+              </th>
+              <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">
+                Catégorie
+              </th>
+              <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -79,7 +91,12 @@ const PortfolioList = () => {
                 <td className="py-3 text-sm">{item.description}</td>
                 <td className="py-3 text-sm">{item.category}</td>
                 <td className="py-3 text-sm">
-                  <button className="text-red-500" onClick={() => handleDeletePortfolio(item._id)}>Supprimer</button>
+                  <button
+                    className="text-red-500"
+                    onClick={() => handleDeletePortfolio(item._id)}
+                  >
+                    Supprimer
+                  </button>
                 </td>
               </tr>
             ))}
