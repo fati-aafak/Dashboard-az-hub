@@ -1,7 +1,6 @@
-
 import { HiX } from "react-icons/hi";
 import Links from "./components/Links";
-import logo from "../../assets/img/dashboards/AZPNG.png"
+import logo from "../../assets/img/layout/asset123.png";
 import routes from "routes.js";
 
 const Sidebar = ({ open, onClose }) => {
@@ -12,7 +11,7 @@ const Sidebar = ({ open, onClose }) => {
       }`}
     >
       <span
-        className="absolute top-4 right-4 block cursor-pointer xl:hidden"
+        className="absolute block cursor-pointer top-4 right-4 xl:hidden"
         onClick={onClose}
       >
         <HiX />
@@ -20,19 +19,14 @@ const Sidebar = ({ open, onClose }) => {
 
       <div className={`mx-[56px] mt-[50px] flex items-center`}>
         <div className="mt-1 ml-1 h-2.5 font-poppins text-[26px] font-bold uppercase text-navy-700 dark:text-white">
-        <img src={logo} alt="" className="w-20" />
+          <img src={logo} alt="" className="w-48" />
         </div>
       </div>
       <div class="mt-[58px] mb-7 h-px bg-gray-300 dark:bg-white/30" />
-   
 
-      <ul className="mb-auto pt-1">
+      <ul className="pt-1 mb-auto">
         <Links routes={routes} />
       </ul>
-
-     
-
-     
     </div>
   );
 };
