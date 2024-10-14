@@ -64,7 +64,10 @@ const schema = yup.object().shape({
   contract: yup.string().required("Contract is required"),
   education: yup.string(),
   type: yup.string().required("Type is required"),
-  Qualifications: yup.string().required("Qualifications are required"),
+  Qualifications: yup
+    .array()
+    .of(yup.string())
+    .min(1, "At least one qualification is required"),
 });
 
 const API_BASE_URL = BASE_URL;
@@ -93,6 +96,7 @@ const PageMag = () => {
     resolver: yupResolver(schema),
     defaultValues: {
       missions: [""],
+      Qualifications: [""],
     },
   });
 
@@ -103,6 +107,15 @@ const PageMag = () => {
   } = useFieldArray({
     control,
     name: "missions",
+  });
+
+  const {
+    fields: qualificationFields,
+    append: appendQualification,
+    remove: removeQualification,
+  } = useFieldArray({
+    control,
+    name: "Qualifications",
   });
 
   const departements = [
@@ -131,8 +144,11 @@ const PageMag = () => {
 
   const onSubmit = async (data) => {
     try {
-      // Filter out any empty mission fields
+      // Filter out any empty mission and qualification fields
       data.missions = data.missions.filter((mission) => mission.trim() !== "");
+      data.Qualifications = data.Qualifications.filter(
+        (qualification) => qualification.trim() !== ""
+      );
 
       const response = await createOffre(data);
       console.log("Offre created:", response);
@@ -280,6 +296,7 @@ const PageMag = () => {
             </p>
           )}
         </div>
+        {/* Qualifications section */}
         <div className="mt-4">
           <label
             htmlFor="Qualifications"
@@ -287,12 +304,30 @@ const PageMag = () => {
           >
             Qualifications
           </label>
-          <textarea
-            id="Qualifications"
-            rows={4}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200"
-            {...register("Qualifications")}
-          />
+          {qualificationFields.map((field, index) => (
+            <div key={field.id} className="mt-2 flex items-center">
+              <input
+                type="text"
+                {...register(`Qualifications.${index}`)}
+                className="mr-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200"
+                placeholder="Enter a qualification"
+              />
+              <button
+                type="button"
+                onClick={() => removeQualification(index)}
+                className="rounded bg-red-500 px-2 py-1 text-white hover:bg-red-600"
+              >
+                Remove
+              </button>
+            </div>
+          ))}
+          <button
+            type="button"
+            onClick={() => appendQualification("")}
+            className="mt-2 rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600"
+          >
+            Ajouter Qualification
+          </button>
           {errors.Qualifications && (
             <p className="mt-1 text-xs text-red-500">
               {errors.Qualifications.message}
