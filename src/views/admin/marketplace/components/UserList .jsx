@@ -1,13 +1,14 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import Card from 'components/card';
-import { BASE_URL } from 'constants/config';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useCallback } from "react";
+import Card from "components/card";
+import { BASE_URL } from "constants/config";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import httpClient from "utils/httpClient";
 
 const api = {
-  getUsers: () => axios.get(`${BASE_URL}/admin`),
-  addUser: (user) => axios.post(`${BASE_URL}/admin`, user),
-  deleteUser: (id) => axios.delete(`${BASE_URL}/admin/${id}`),
+  getUsers: () => httpClient.get(`/admin`),
+  addUser: (user) => httpClient.post(`/admin`, user),
+  deleteUser: (id) => httpClient.delete(`/admin/${id}`),
 };
 
 const UserList = () => {
@@ -15,7 +16,12 @@ const UserList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const [newUser, setNewUser] = useState({ fullname: '', email: '', password: '', role: 'Admin' });
+  const [newUser, setNewUser] = useState({
+    fullname: "",
+    email: "",
+    password: "",
+    role: "Admin",
+  });
 
   const fetchUsers = useCallback(async () => {
     try {
@@ -23,8 +29,8 @@ const UserList = () => {
       const response = await api.getUsers();
       setUsers(response.data);
     } catch (error) {
-      console.error('Error fetching users:', error);
-      setError('Une erreur est survenue lors du chargement des admins.');
+      console.error("Error fetching users:", error);
+      setError("Une erreur est survenue lors du chargement des admins.");
     } finally {
       setLoading(false);
     }
@@ -43,18 +49,17 @@ const UserList = () => {
     try {
       setLoading(true);
       const response = await api.addUser(newUser);
-      console.log('API response:', response.data);
+      console.log("API response:", response.data);
 
       if (response.data && response.data.admin) {
-        setUsers(prevUsers => [...prevUsers, response.data.admin]);
-        setNewUser({ fullname: '', email: '', password: '', role: 'Admin' });
+        setUsers((prevUsers) => [...prevUsers, response.data.admin]);
+        setNewUser({ fullname: "", email: "", password: "", role: "Admin" });
       } else {
-        console.error('Unexpected API response structure:', response.data);
-        setError('Unexpected response from server when adding user.');
+        console.error("Unexpected API response structure:", response.data);
+        setError("Unexpected response from server when adding user.");
       }
-
     } catch (error) {
-      console.error('Error adding user:', error);
+      console.error("Error adding user:", error);
       setError(`Une erreur est survenue lors de l'ajout de l'utilisateur.`);
     } finally {
       setLoading(false);
@@ -65,10 +70,12 @@ const UserList = () => {
     try {
       setLoading(true);
       await api.deleteUser(id);
-      setUsers(prevUsers => prevUsers.filter(user => user._id !== id));
+      setUsers((prevUsers) => prevUsers.filter((user) => user._id !== id));
     } catch (error) {
-      console.error('Error deleting user:', error);
-      setError(`Une erreur est survenue lors de la suppression de l'utilisateur.`);
+      console.error("Error deleting user:", error);
+      setError(
+        `Une erreur est survenue lors de la suppression de l'utilisateur.`
+      );
     } finally {
       setLoading(false);
     }
@@ -97,10 +104,18 @@ const UserList = () => {
         <table className="w-full min-w-[500px] overflow-x-scroll">
           <thead>
             <tr>
-              <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">Nom</th>
-              <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">Email</th>
-              <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">Rôle</th>
-              <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">Actions</th>
+              <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">
+                Nom
+              </th>
+              <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">
+                Email
+              </th>
+              <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">
+                Rôle
+              </th>
+              <th className="py-3 text-start uppercase tracking-wide text-gray-600 sm:text-xs lg:text-xs">
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -110,7 +125,12 @@ const UserList = () => {
                 <td className="py-3 text-sm">{user.email}</td>
                 <td className="py-3 text-sm">{user.role}</td>
                 <td className="py-3 text-sm">
-                  <button className="text-red-500" onClick={() => handleDeleteUser(user._id)}>Delete</button>
+                  <button
+                    className="text-red-500"
+                    onClick={() => handleDeleteUser(user._id)}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
@@ -119,7 +139,9 @@ const UserList = () => {
       </div>
 
       <div className="p-4">
-        <h2 className="text-lg font-bold text-navy-700 dark:text-white">Ajouter un utilisateur</h2>
+        <h2 className="text-lg font-bold text-navy-700 dark:text-white">
+          Ajouter un utilisateur
+        </h2>
         <div className="flex flex-col space-y-2">
           <input
             type="text"
@@ -127,7 +149,7 @@ const UserList = () => {
             value={newUser.fullname}
             onChange={handleChange}
             placeholder="Nom"
-            className="border rounded p-2"
+            className="rounded border p-2"
           />
           <input
             type="email"
@@ -135,7 +157,7 @@ const UserList = () => {
             value={newUser.email}
             onChange={handleChange}
             placeholder="Email"
-            className="border rounded p-2"
+            className="rounded border p-2"
           />
           <input
             type="password"
@@ -143,7 +165,7 @@ const UserList = () => {
             value={newUser.password}
             onChange={handleChange}
             placeholder="Password"
-            className="border rounded p-2"
+            className="rounded border p-2"
           />
           <input
             type="text"
@@ -151,9 +173,14 @@ const UserList = () => {
             value={newUser.role}
             onChange={handleChange}
             placeholder="Rôle"
-            className="border rounded p-2"
+            className="rounded border p-2"
           />
-          <button onClick={handleAddUser} className="bg-[#662483] text-white rounded p-2">Ajouter</button>
+          <button
+            onClick={handleAddUser}
+            className="rounded bg-[#662483] p-2 text-white"
+          >
+            Ajouter
+          </button>
         </div>
       </div>
     </Card>
