@@ -119,11 +119,15 @@ const PageMag = () => {
   });
 
   const departements = [
-    { value: "Développement web", label: "Développement Web et Mobile" },
-    { value: "Communication", label: "Communication" },
-    { value: "Bureau d'étude", label: "Bureau d'étude" },
-    { value: "Centre Commercial", label: "Centre Commercial" },
-    { value: "Support fonctionnel", label: "Support fonctionnel" },
+    {
+      value: "Développement Web et Mobile",
+      label: "Développement Web et Mobile",
+    },
+    { value: "UI/UX Design et Graphisme", label: "UI/UX Design et Graphisme" },
+    { value: "HR et Communication", label: "Communication" },
+    { value: "Marketing et SEO", label: "Marketing et SEO" },
+    { value: "Commerciale", label: "Centre Commercial" },
+    // { value: "Support fonctionnel", label: "Support fonctionnel" },
   ];
 
   const contrats = [
@@ -195,7 +199,7 @@ const PageMag = () => {
           <input
             type="text"
             id="title"
-            className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200"
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200"
             {...register("title")}
           />
           {errors.title && (
@@ -212,7 +216,7 @@ const PageMag = () => {
           <input
             type="text"
             id="location"
-            className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200"
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200"
             {...register("location")}
           />
           {errors.location && (
@@ -231,7 +235,7 @@ const PageMag = () => {
           <input
             type="text"
             id="education"
-            className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200"
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200"
             {...register("education")}
           />
           {errors.education && (
@@ -250,7 +254,7 @@ const PageMag = () => {
           <textarea
             id="description"
             rows={4}
-            className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200"
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200"
             {...register("description")}
           />
           {errors.description && (
@@ -267,17 +271,17 @@ const PageMag = () => {
             Missions
           </label>
           {missionFields.map((field, index) => (
-            <div key={field.id} className="flex items-center mt-2">
+            <div key={field.id} className="mt-2 flex items-center">
               <input
                 type="text"
                 {...register(`missions.${index}`)}
-                className="block w-full mr-2 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200"
+                className="mr-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200"
                 placeholder="Enter a mission"
               />
               <button
                 type="button"
                 onClick={() => removeMission(index)}
-                className="px-2 py-1 text-white bg-red-500 rounded hover:bg-red-600"
+                className="rounded bg-red-500 px-2 py-1 text-white hover:bg-red-600"
               >
                 Remove
               </button>
@@ -286,7 +290,7 @@ const PageMag = () => {
           <button
             type="button"
             onClick={() => appendMission("")}
-            className="px-4 py-2 mt-2 text-white bg-green-500 rounded hover:bg-green-600"
+            className="mt-2 rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600"
           >
             Ajouter Mission
           </button>
@@ -305,17 +309,17 @@ const PageMag = () => {
             Qualifications
           </label>
           {qualificationFields.map((field, index) => (
-            <div key={field.id} className="flex items-center mt-2">
+            <div key={field.id} className="mt-2 flex items-center">
               <input
                 type="text"
                 {...register(`Qualifications.${index}`)}
-                className="block w-full mr-2 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200"
+                className="mr-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200"
                 placeholder="Enter a qualification"
               />
               <button
                 type="button"
                 onClick={() => removeQualification(index)}
-                className="px-2 py-1 text-white bg-red-500 rounded hover:bg-red-600"
+                className="rounded bg-red-500 px-2 py-1 text-white hover:bg-red-600"
               >
                 Remove
               </button>
@@ -324,7 +328,7 @@ const PageMag = () => {
           <button
             type="button"
             onClick={() => appendQualification("")}
-            className="px-4 py-2 mt-2 text-white bg-green-500 rounded hover:bg-green-600"
+            className="mt-2 rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600"
           >
             Ajouter Qualification
           </button>
@@ -345,7 +349,7 @@ const PageMag = () => {
             button={
               <button
                 type="button"
-                className="w-full px-4 py-2 text-left border rounded-md"
+                className="w-full rounded-md border px-4 py-2 text-left"
               >
                 {selectedDepartement
                   ? departements.find(
@@ -390,7 +394,7 @@ const PageMag = () => {
             button={
               <button
                 type="button"
-                className="w-full px-4 py-2 text-left border rounded-md"
+                className="w-full rounded-md border px-4 py-2 text-left"
               >
                 {selectedContract
                   ? contrats.find((cat) => cat.value === selectedContract).label
@@ -433,7 +437,7 @@ const PageMag = () => {
             button={
               <button
                 type="button"
-                className="w-full px-4 py-2 text-left border rounded-md"
+                className="w-full rounded-md border px-4 py-2 text-left"
               >
                 {selectedType
                   ? types.find((cat) => cat.value === selectedType).label
