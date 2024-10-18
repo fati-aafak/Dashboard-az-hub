@@ -51,10 +51,8 @@ const schema = yup.object().shape({
     .string()
     .required("Title is required")
     .max(64, "Title must be at most 64 characters"),
-  description: yup
-    .string()
-    .required("Description is required")
-    .max(1024, "Description must be at most 1024 characters"),
+  description: yup.string().required("Description is required"),
+  // .max(1024, "Description must be at most 1024 characters"),
   missions: yup
     .array()
     .of(yup.string())
