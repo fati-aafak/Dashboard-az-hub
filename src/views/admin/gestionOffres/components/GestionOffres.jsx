@@ -125,7 +125,7 @@ const PageMag = () => {
     },
     { value: "UI/UX Design et Graphisme", label: "UI/UX Design et Graphisme" },
     { value: "HR et Communication", label: "Communication" },
-    { value: "Marketing et SEO", label: "Bureau d'étude" },
+    { value: "Marketing et SEO", label: "Marketing et SEO" },
     { value: "Commerciale", label: "Centre Commercial" },
     // { value: "Support fonctionnel", label: "Support fonctionnel" },
   ];
